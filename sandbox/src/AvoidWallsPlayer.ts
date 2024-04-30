@@ -4,8 +4,8 @@ import Snake from "./Snake"
 import Point from "./Point"
 
 class AvoidWallsPlayer extends Player {
-  constructor(SnakeController: SnakeController) {
-    super(SnakeController);
+  constructor(snakeController: SnakeController) {
+    super(snakeController);
   }
 
   makeTurn(): void {

@@ -13,7 +13,7 @@ class Snake {
     this.color = snakeColor;
   }
   move(moves: number) {
-    display("The", this.color, "snake moved", moves, "squares");
+    /*display("The", this.color, "snake moved", moves, "squares");*/
     if (this.currentDirection === 1)
       this.currentPosition = new Point(this.currentPosition.x , this.currentPosition.y - 1);
     else if (this.currentDirection === 2)
