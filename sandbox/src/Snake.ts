@@ -36,7 +36,7 @@ class Snake {
     else if (this.currentDirection === 4) {
       this.currentDirection = 1;
     }
-    display("The", this.color, "snake turned left");
+    //display("The", this.color, "snake turned left");
   }
   
   turnRight() {
@@ -51,7 +51,7 @@ class Snake {
     else if (this.currentDirection === 4) {
       this.currentDirection = 2;
     }
-    display("The", this.color, "snake turned right");
+    //display("The", this.color, "snake turned right");
   }
   
   public get position() {

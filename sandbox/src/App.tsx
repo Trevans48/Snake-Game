@@ -23,7 +23,7 @@ export default function App() {
     let blueSnake = new Snake("blue");
     const worldModel = new WorldModel(redSnake, 20, 20);
     const canvasWorldView = new CanvasWorldView(30);
-    const humanPlayer = new HumanPlayer(new SnakeController(worldModel, redSnake), new LRKeyInputHandler());
+    const humanPlayer = new HumanPlayer(new SnakeController(worldModel, blueSnake), new LRKeyInputHandler());
     const avoidWallsPlayer = new AvoidWallsPlayer(new SnakeController(worldModel, redSnake));
     const gameController = new GameController(worldModel);
     gameController.setPlayer1(humanPlayer);

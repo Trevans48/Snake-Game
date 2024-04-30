@@ -26,11 +26,11 @@ class SnakeController {
         return this.slitherer.direction;
     }
 
-    public get worldWidth() {
+    worldWidth() {
         return this.snakeWorld.worldWidth;
     }
 
-    public get worldHeight() {
+    worldHeight() {
         return this.snakeWorld.worldHeight;
     }
 }

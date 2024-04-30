@@ -22,11 +22,11 @@ class WorldModel {
         }
   }
 
-  worldWidth(): number {
+  get worldWidth(): number {
     return this.width;
   }
 
-  worldHeight(): number {
+  get worldHeight(): number {
     return this.height;
   }
 

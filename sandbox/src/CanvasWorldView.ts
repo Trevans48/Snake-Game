@@ -14,8 +14,8 @@ class CanvasWorldView implements IWorldView {
 	}
 
 	display(worldModel: WorldModel) {
-		const canvasWidth = worldModel.worldWidth() * this.scalingFactor;
-		const canvasHeight = worldModel.worldHeight() * this.scalingFactor;
+		const canvasWidth = worldModel.worldWidth * this.scalingFactor;
+		const canvasHeight = worldModel.worldHeight * this.scalingFactor;
 
 		this.worldCanvas.width = canvasWidth;
 		this.worldCanvas.height = canvasHeight;
