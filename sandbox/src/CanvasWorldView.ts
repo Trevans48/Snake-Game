@@ -1,5 +1,6 @@
 import IWorldView from "./IWorldView"
 import WorldModel from "./WorldModel"
+import Snake from "./Snake";
 
 class CanvasWorldView implements IWorldView {
 	private scalingFactor: number;
@@ -22,22 +23,24 @@ class CanvasWorldView implements IWorldView {
 
 		this.context!.fillRect(0, 0, canvasWidth, canvasHeight);
 
-		const snake = worldModel.snake; 
-		console.log(snake)
-		if (snake) {
-			const snakeWidth = this.scalingFactor;
-			const snakeHeight = this.scalingFactor;
-			const snakeX = snake.position.x * this.scalingFactor;
-			const snakeY = snake.position.y * this.scalingFactor;
+		const allSnakes: Snake[] = worldModel.allSnakes;
+
+		allSnakes.forEach((snake: Snake) => {
+    	 snake.currentParts.forEach((part) => {
+      	  const partX = part.x * this.scalingFactor;
+      	  const partY = part.y * this.scalingFactor;
+      	  const partWidth = this.scalingFactor;
+     	  const partHeight = this.scalingFactor;
 
 
-			if (this.context) {
-    		this.context.fillStyle = "red";
-    		this.context.fillRect(snakeX, snakeY, snakeWidth, snakeHeight);
-			}
-
-		}
+		if (this.context) {
+    		 this.context.fillStyle = snake.color;
+    		 this.context.fillRect(partX, partY, partWidth, partHeight);
+    		}
+    	 });
+  		});
 	}
 }
+
 
 export default CanvasWorldView; 

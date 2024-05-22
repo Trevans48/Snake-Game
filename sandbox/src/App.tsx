@@ -19,16 +19,16 @@ export default function App() {
     // Include your display statements to test below
     document.getElementById("output")!.innerText = "OUTPUT:\n";
     display("Snake Moves:");
-    let redSnake = new Snake("red");
-    let blueSnake = new Snake("blue");
-    const worldModel = new WorldModel(redSnake, 20, 20);
+    let redSnake = new Snake("red", new Point(0,0), 4);
+    let blueSnake = new Snake("blue", new Point(0,50), 4);
+    const worldModel = new WorldModel();
     const canvasWorldView = new CanvasWorldView(30);
     const humanPlayer = new HumanPlayer(new SnakeController(worldModel, blueSnake), new LRKeyInputHandler());
     const avoidWallsPlayer = new AvoidWallsPlayer(new SnakeController(worldModel, redSnake));
     const gameController = new GameController(worldModel);
     gameController.setPlayer1(humanPlayer);
     gameController.setPlayer2(avoidWallsPlayer);
-    worldModel.setView(canvasWorldView);
+    worldModel.setViews(canvasWorldView);
     gameController.run();
    
     /*display(

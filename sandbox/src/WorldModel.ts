@@ -1,26 +1,52 @@
 import Snake from "./Snake";
 import Point from "./Point";
-import IWorldView from "./IWorldView"
+import IWorldView from "./IWorldView";
 
 class WorldModel {
-  private snake_: Snake;
+  private _allSnakes: Snake[];
   private width: number;
   private height: number;
-  private worldView: IWorldView | null;
+  private _allViews: IWorldView[];
 
-  constructor(s: Snake, width: number, height: number) {
-    this.snake_ = s;
-    this.width = width;
-    this.height = height;
-    this.worldView = null;
+  constructor() {
+    this._allSnakes = [];
+    this.width = 20;
+    this.height = 20;
+    this._allViews = [];
   }
 
-  update(steps: number): void {
-    this.snake_.move(steps);
-    if (this.worldView !== null) {
-            this.worldView.display(this);
-        }
+update(steps: number): void {
+  const collidedSnakes: Snake[] = [];
+
+  for (let i = 0; i < this._allSnakes.length; i++) {
+    for (let j = i + 1; j < this._allSnakes.length; j++) {
+      const snakeA = this._allSnakes[i];
+      const snakeB = this._allSnakes[j];
+
+      if (snakeA.didCollide(snakeB) && !collidedSnakes.includes(snakeA)) {
+        collidedSnakes.push(snakeA);
+      }
+
+      if (snakeB.didCollide(snakeA) && !collidedSnakes.includes(snakeB)) {
+        collidedSnakes.push(snakeB);
+      }
+    }
   }
+
+  collidedSnakes.forEach(collidedSnake => {
+    const index = this._allSnakes.indexOf(collidedSnake);
+    if (index !== -1) {
+      this._allSnakes.splice(index, 1);
+    }
+  });
+
+    this._allSnakes.forEach(snake => {
+      snake.move(steps);
+    });
+    this._allViews.forEach(view => {
+      view.display(this)
+    });
+}
 
   get worldWidth(): number {
     return this.width;
@@ -30,24 +56,16 @@ class WorldModel {
     return this.height;
   }
 
-  get snake(): Snake {
-    return this.snake_;
+  get allSnakes(): Snake[] {
+    return this._allSnakes;
   }
 
-  set snake(s:Snake) {
-    this.snake_ = s;
-}
-
-  get WorldView(): IWorldView | null {
-    return this.worldView;
+  addSnake(snake: Snake): void {
+    this._allSnakes.push(snake);
   }
 
-  set WorldView(view: IWorldView | null) {
-    this.worldView = view;
-  }
-
-  setView(view: IWorldView): void {
-    this.worldView = view;
+  addView(view: IWorldView): void {
+    this._allViews.push(view);
   }
 }
 
