@@ -4,7 +4,7 @@ import IInputHandler from "./IInputHandler"
 
 
 class HumanPlayer extends Player {
-	constructor(private snakeController: SnakeController, private inputHandler: IInputHandler) {
+	constructor(snakeController: SnakeController, inputHandler: IInputHandler) {
 		super(snakeController); 
 	}
 
