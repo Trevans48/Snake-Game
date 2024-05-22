@@ -4,17 +4,19 @@ import IInputHandler from "./IInputHandler"
 
 
 class HumanPlayer extends Player {
+	protected ih: IInputHandler;
 	constructor(snakeController: SnakeController, inputHandler: IInputHandler) {
-		super(snakeController); 
+		super(snakeController);
+		this.ih = inputHandler;
 	}
 
 	makeTurn() {
-		if (this.inputHandler.madeLeftMove()) {
-			this.snakeController.turnSnakeLeft();
-			this.inputHandler.resetLeftMove();
-		} else if (this.inputHandler.madeRightMove()) {
-			this.snakeController.turnSnakeRight();
-			this.inputHandler.resetRightMove();
+		if (this.ih.madeLeftMove()) {
+			this.sc.turnSnakeLeft();
+			this.ih.resetLeftMove();
+		} else if (this.ih.madeRightMove()) {
+			this.sc.turnSnakeRight();
+			this.ih.resetRightMove();
 		}
 	}
 }
